@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenStreetMap + Leaflet</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        html, body { margin: 0; padding: 0; height: 100%; }
+        #map { height: 100vh; width: 100vw; }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+      fetch('https://uemorin.ytkg.workers.dev/')
+        .then(response => response.json())
+        .then(data => {
+            var latitude = parseFloat(data.latitude);
+            var longitude = parseFloat(data.longitude);
+
+            var map = L.map('map').setView([latitude, longitude], 13); // 東京駅周辺
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; OpenStreetMap contributors'
+            }).addTo(map);
+
+            // マーカーを配置（緯度, 経度）
+            var marker = L.marker([latitude, longitude]).addTo(map)
+                .bindPopup("うえもりん") // 吹き出しメッセージ
+                .openPopup();
+                })
+    </script>
+</body>
+</html>
