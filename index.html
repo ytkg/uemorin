@@ -23,7 +23,7 @@
             var latitude = parseFloat(data.latitude);
             var longitude = parseFloat(data.longitude);
 
-            var map = L.map('map').setView([latitude, longitude], 13); // 東京駅周辺
+            var map = L.map('map').setView([latitude, longitude], 16); // 東京駅周辺
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; OpenStreetMap contributors'
             }).addTo(map);
