@@ -24,7 +24,9 @@
         const longitude = parseFloat(data.longitude);
         const map = L.map('map').setView([latitude, longitude], 16);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OpenStreetMap contributors' }).addTo(map);
-        L.marker([latitude, longitude]).addTo(map).bindPopup("うえもりん").openPopup();
+        const marker = L.marker([latitude, longitude]).addTo(map)
+        marker.bindPopup("うえもりん").openPopup()
+        marker.bindTooltip(`滞在時間: ${data.stayed_time}<br/>バッテリー: ${data.battery}%くらい`, { permanent: true })//, direction: 'bottom' })
       })
   </script>
 </body>
