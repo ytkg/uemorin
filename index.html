@@ -1,38 +1,31 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Uemorin is here!!</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <style>
-        html, body { margin: 0; padding: 0; height: 100%; }
-        #map { height: 100dvh; width: 100vw; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Uemorin is here!!</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
+    html, body { margin: 0; padding: 0; height: 100%; }
+    #map { height: 100dvh; width: 100vw; }
+  </style>
 </head>
 <body>
-    <div id="map"></div>
-    <div style="position: fixed; bottom: 20px; right: 10px; background: rgba(255, 255, 255, 0.8); color: white; padding: 5px; border-radius: 5px; z-index: 1000; display: flex; align-items: center;">
-      <img src="./uemorin.png" alt="アイコン" style="width: 120px; height: 90px;">
-    </div>
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <script>
-      fetch('https://uemorin.ytkg.workers.dev/')
-        .then(response => response.json())
-        .then(data => {
-            var latitude = parseFloat(data.latitude);
-            var longitude = parseFloat(data.longitude);
-
-            var map = L.map('map').setView([latitude, longitude], 16); // 東京駅周辺
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; OpenStreetMap contributors'
-            }).addTo(map);
-
-            // マーカーを配置（緯度, 経度）
-            var marker = L.marker([latitude, longitude]).addTo(map)
-                .bindPopup("うえもりん") // 吹き出しメッセージ
-                .openPopup();
-                })
-    </script>
+  <div id="map"></div>
+  <div style="position: fixed; bottom: 20px; right: 10px; background: rgba(255, 255, 255, 0.8); color: white; padding: 5px; border-radius: 5px; z-index: 1000; display: flex; align-items: center;">
+    <img src="./uemorin.png" alt="アイコン" style="width: 120px; height: 90px;">
+  </div>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    fetch('https://uemorin.ytkg.workers.dev/')
+      .then(response => response.json())
+      .then(data => {
+        const latitude = parseFloat(data.latitude);
+        const longitude = parseFloat(data.longitude);
+        const map = L.map('map').setView([latitude, longitude], 16);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OpenStreetMap contributors' }).addTo(map);
+        L.marker([latitude, longitude]).addTo(map).bindPopup("うえもりん").openPopup();
+      })
+  </script>
 </body>
 </html>
