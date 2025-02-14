@@ -15,6 +15,8 @@
   <div style="position: fixed; bottom: 20px; right: 10px; background: rgba(255, 255, 255, 0.8); color: white; padding: 5px; border-radius: 5px; z-index: 1000; display: flex; align-items: center;">
     <img src="./uemorin.png" alt="アイコン" style="width: 120px; height: 90px;">
   </div>
+  <div id="address" style="position: fixed; top: 20px; left: 50px; background: rgba(255, 255, 255, 0.8); padding: 5px; border-radius: 5px; z-index: 1000; display: flex; align-items: center;">
+  </div>
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script>
     fetch('https://uemorin.ytkg.workers.dev/')
@@ -27,6 +29,8 @@
         const marker = L.marker([latitude, longitude]).addTo(map)
         marker.bindPopup("うえもりん").openPopup()
         marker.bindTooltip(`滞在時間: ${data.stayed_time}<br/>バッテリー: ${data.battery}%くらい`, { permanent: true })//, direction: 'bottom' })
+
+        document.getElementById("address").innerText = data.address;
       })
   </script>
 </body>
