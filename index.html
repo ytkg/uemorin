@@ -5,33 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Uemorin is here!!</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-  <style>
-    html, body { margin: 0; padding: 0; height: 100%; }
-    #map { height: 100dvh; width: 100vw; }
-  </style>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
   <div id="map"></div>
-  <div style="position: fixed; bottom: 20px; right: 10px; background: rgba(255, 255, 255, 0.8); color: white; padding: 5px; border-radius: 5px; z-index: 1000; display: flex; align-items: center;">
-    <img src="./uemorin.png" alt="アイコン" style="width: 120px; height: 90px;">
+  <div class="image-container">
+    <img src="./uemorin.png" alt="アイコン" class="icon-image">
   </div>
-  <div id="address" style="position: fixed; top: 20px; left: 50px; background: rgba(255, 255, 255, 0.8); padding: 5px; border-radius: 5px; z-index: 1000; display: flex; align-items: center;">
+  <div id="address" class="address-container">
   </div>
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-  <script>
-    fetch('https://uemorin.ytkg.workers.dev/')
-      .then(response => response.json())
-      .then(data => {
-        const latitude = data.is_home ? 35.685175 : parseFloat(data.latitude);
-        const longitude = data.is_home ? 139.7528 : parseFloat(data.longitude);
-        const map = L.map('map').setView([latitude, longitude], 16);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OpenStreetMap contributors' }).addTo(map);
-        const marker = L.marker([latitude, longitude]).addTo(map)
-        marker.bindPopup("うえもりん").openPopup()
-        marker.bindTooltip(`滞在時間: ${data.stayed_time}<br/>バッテリー: ${data.battery}%くらい`, { permanent: true })//, direction: 'bottom' })
-
-        document.getElementById("address").innerText = data.address;
-      })
-  </script>
+  <script src="js/script.js"></script>
 </body>
 </html>
