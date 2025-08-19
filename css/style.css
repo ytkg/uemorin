@@ -1,0 +1,40 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+#map {
+  height: 100dvh;
+  width: 100vw;
+}
+
+.image-container {
+  position: fixed;
+  bottom: 20px;
+  right: 10px;
+  background: rgba(255, 255, 255, 0.8);
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+}
+
+.address-container {
+  position: fixed;
+  top: 20px;
+  left: 50px;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 5px;
+  border-radius: 5px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+}
+
+.icon-image {
+  width: 120px;
+  height: 90px;
+}
